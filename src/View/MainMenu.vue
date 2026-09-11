@@ -298,7 +298,7 @@ const reset2 = () => {
   <div class="ticks"></div>
   <section v-if="hasil2" id="koleksi-hasil">
     <h2>Upah Lembur yg dikumpulkan</h2>
-    <table id="detail-table">
+    <table id="detail-table-bawah">
       <tbody>
         <tr v-for="(result, index) in collectedResults" :key="index">
           <td>Day {{ index + 1 }}</td>
