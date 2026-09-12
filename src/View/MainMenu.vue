@@ -17,6 +17,8 @@ const hasil2 = ref("");
 const collectedResults = ref([]);
 const boxCollected = ref([]);
 const infoBagi = ref([]);
+const ekuivalenCollected = ref("");
+const ekuivalenArray = ref([]);
 const totalCollected = ref(0);
 const sembunyikan = ref(false);
 const tampilkanHasil = ref(false);
@@ -41,7 +43,7 @@ onMounted(() => {
 
 const scrollHasil = () => {
   setTimeout(() => {
-    document.getElementById("social").scrollIntoView({
+    document.getElementById("next-steps").scrollIntoView({
       behavior: "smooth",
     });
   }, 100); // Delay untuk memastikan hasil sudah dirender
@@ -121,6 +123,7 @@ const hitung = () => {
   let upahPerjam = (1 / 173) * GajiPokok.value;
   detailList.value = []; // Reset detail
   let totalNilai = 0;
+  let totalEkuivalen = 0;
   const jamLemburCount = parseInt(JamLembur.value);
 
   // Hitung untuk setiap jam
@@ -133,6 +136,8 @@ const hitung = () => {
     if (segment) {
       const nilai = upahPerjam * segment.kali;
       totalNilai += nilai;
+      const ekuivalen = segment.kali;
+      totalEkuivalen += ekuivalen;
 
       detailList.value.push({
         jam: jam,
@@ -148,11 +153,13 @@ const hitung = () => {
   total.value = formatRupiah(totalNilai);
   kolekhasil.value = `${formatRupiah(totalNilai)}`;
   hasil2.value = totalNilai;
+  ekuivalenCollected.value = totalEkuivalen;
   tampilkanHasil.value = true;
   scrollHasil();
 };
 const jumlahkanHasil = () => {
   if (hasil2.value !== "") {
+    ekuivalenArray.value.push({ kalinan: ekuivalenCollected.value });
     collectedResults.value.push(parseFloat(hasil2.value));
     boxCollected.value.push(parseFloat(GajiPokok.value));
     infoBagi.value.push({ JamLembur: JamLembur.value });
@@ -161,6 +168,7 @@ const jumlahkanHasil = () => {
       0,
     );
   }
+
   sembunyikan.value = true;
   scrollTotal();
 };
@@ -247,7 +255,10 @@ const reset2 = () => {
   boxCollected.value = [];
   infoBagi.value = [];
   totalCollected.value = 0;
+  ekuivalenArray.value = [];
   sembunyikan.value = false;
+  tampilkanHasil.value = false;
+  scrollHapus();
 };
 </script>
 
@@ -317,21 +328,23 @@ const reset2 = () => {
   </section>
 
   <div class="ticks"></div>
-  <section v-if="hasil2" id="koleksi-hasil">
+  <section v-if="sembunyikan" id="koleksi-hasil">
     <h2>Upah Lembur yg dikumpulkan</h2>
     <table id="detail-table-bawah">
       <tbody>
         <tr v-for="(result, index) in collectedResults" :key="index">
           <td>Day {{ index + 1 }}</td>
           <td>:</td>
-          <td>{{ infoBagi[index].JamLembur }} Jam Lembur</td>
+          <td>{{ infoBagi[index].JamLembur }} Jam</td>
+          <td>|</td>
+          <td>Ekvl {{ ekuivalenArray[index].kalinan }}</td>
           <td>|</td>
           <td>{{ formatRupiah(result) }}</td>
         </tr>
       </tbody>
     </table>
 
-    <p>===============================</p>
+    <p>=================================</p>
     <p>Total Upah Lembur:</p>
     <div class="number-copy">
       <span style="color: #72cf9f; font-size: 1.5em; font-weight: bold">
