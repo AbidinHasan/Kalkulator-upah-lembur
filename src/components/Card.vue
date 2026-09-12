@@ -119,8 +119,9 @@
   flex-direction: column;
 }
 
-.total strong {
-  text-align: right;
+.total p,
+strong {
+  text-align: left;
 
   @media (max-width: 500px) {
     font-size: 11px;
@@ -139,13 +140,20 @@
         <strong>3 jam</strong> di hari Kamis. Berapa uang lemburnya?
       </p>
 
-      <p>Anda harus menghitung upah per jam terlebih dahulu yaitu:</p>
+      <p>
+        Masukkan nominal gaji bulanan dan jam lembur, Saya akan menghitungkan
+        simulasinya.
+      </p>
+
+      <p>Rumus menghitung upah perjam:</p>
 
       <div class="perhitungan">
         <strong>Rp4.000.000 × 1/173 = Rp23.121</strong>
       </div>
 
-      <p>Lembur dilakukan pada hari kerja, rate yang berlaku adalah:</p>
+      <p>
+        Lembur dilakukan pada hari kerja (Normal Day), rate yang berlaku adalah:
+      </p>
 
       <div class="highlight">
         <strong>
@@ -173,7 +181,7 @@
 
       <div class="total">
         <span>Total upah lembur</span><br />
-        <strong>Rp34.682 + Rp46.242 + Rp46.242 = Rp 48.557 </strong>
+        <strong>Rp34.682 + Rp46.242 + Rp46.242 = Rp 48.557</strong>
       </div>
     </div>
   </div>
