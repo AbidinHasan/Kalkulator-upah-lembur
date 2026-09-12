@@ -119,8 +119,7 @@
   flex-direction: column;
 }
 
-.total p,
-strong {
+.total strong {
   text-align: left;
 
   @media (max-width: 500px) {
