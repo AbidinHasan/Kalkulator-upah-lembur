@@ -46,7 +46,7 @@
       rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
   }
 
-  #social .button-icon {
+  #social .tombol-icon {
     filter: invert(1) brightness(2);
   }
 }
@@ -126,6 +126,7 @@ code {
   color: var(--text-h);
   background: #252135;
   border: 13px solid transparent;
+  box-shadow: 3px 3px #fafafa;
   transition: border-color 0.3s;
   margin-bottom: 5px;
   cursor: pointer;
@@ -139,6 +140,10 @@ code {
     outline-offset: 2px;
   }
 }
+.counter:active {
+  box-shadow: none;
+  transform: translate(3px, 3px);
+}
 
 .klikhapus {
   font-size: 16px;
@@ -147,6 +152,7 @@ code {
   color: var(--text-h);
   background: rgba(222, 15, 15, 0.751);
   border: 13px solid transparent;
+  box-shadow: 3px 3px #fafafa;
   transition: border-color 0.3s;
   margin-bottom: 5px;
   cursor: pointer;
@@ -160,16 +166,7 @@ code {
     outline-offset: 2px;
   }
 }
-
-button {
-  text-transform: uppercase;
-  border-radius: 10px;
-  border: 2px solid #fafafa;
-  box-shadow: 3px 3px #fafafa;
-  cursor: pointer;
-}
-
-button:active {
+.klikhapus:active {
   box-shadow: none;
   transform: translate(3px, 3px);
 }
@@ -393,7 +390,7 @@ button:active {
     &:hover {
       box-shadow: var(--shadow);
     }
-    .button-icon {
+    .tombol-icon {
       height: 18px;
       width: 18px;
     }

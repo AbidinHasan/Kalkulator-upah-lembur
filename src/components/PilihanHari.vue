@@ -40,6 +40,8 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .radio-indicator {
@@ -60,6 +62,8 @@
   opacity: 0;
   transform: scale(0);
   transition: all 0.3s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .glass-glider-vertical {

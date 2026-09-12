@@ -1,10 +1,12 @@
 <script setup>
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 import InputPlaceholder from "../components/InputPlaceholder.vue";
 import TombolScrollUp from "../components/ScrollUpButton.vue";
 import PilihanHari from "../components/PilihanHari.vue";
 import DayWork from "../components/DayWork.vue";
 import IconCopy from "../components/IconCopy.vue";
+import CardHover from "../components/Card.vue";
+import KlikInformasi from "../components/Info.vue";
 
 const JamLembur = ref("");
 const GajiPokok = ref("");
@@ -25,6 +27,8 @@ const thisDay = ref("Day1");
 const Day = ref("option1");
 const hideWeekend = ref(false);
 const ListPerhitungan = ref([]);
+const ModalOpen = ref(false);
+const infoHitung = ref(null);
 
 const handleScroll = () => {
   tmblUP.value = window.scrollY > 200;
@@ -32,6 +36,7 @@ const handleScroll = () => {
 
 onMounted(() => {
   window.addEventListener("scroll", handleScroll);
+  document.addEventListener("click", handleDocumentClick);
 });
 
 const scrollHasil = () => {
@@ -71,6 +76,22 @@ const TombolKeAtas = () => {
     behavior: "smooth",
   });
 };
+
+const toggleModal = () => {
+  ModalOpen.value = !ModalOpen.value;
+};
+const closeModal = () => {
+  ModalOpen.value = false;
+};
+function handleDocumentClick(event) {
+  if (!infoHitung.value) return;
+  if (!infoHitung.value.contains(event.target)) {
+    closeModal();
+  }
+}
+onBeforeUnmount(() => {
+  document.removeEventListener("click", handleDocumentClick);
+});
 
 // Format currency ke Rupiah
 const formatRupiah = (number) => {
@@ -326,6 +347,13 @@ const reset2 = () => {
       Bersihkan Total Upah Lembur
     </button>
   </section>
+  <section id="spacer"></section>
+  <div ref="infoHitung">
+    <KlikInformasi judul="Cara Hitung?" @click="toggleModal" />
+  </div>
+  <div v-if="ModalOpen">
+    <CardHover />
+  </div>
 
   <div class="ticks"></div>
   <section id="spacer"></section>
