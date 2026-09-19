@@ -32,6 +32,9 @@ const ListPerhitungan = ref([]);
 const ModalOpen = ref(false);
 const infoHitung = ref(null);
 
+const GAS_URL =
+  "https://script.google.com/macros/s/AKfycbx4_V-aPySjZpIW-oGMPFo1edL0zFEUHncaiG4RO0AP2lz74NB2b4kGBNvcYv47gCnn/exec";
+
 const handleScroll = () => {
   tmblUP.value = window.scrollY > 200;
 };
@@ -39,6 +42,23 @@ const handleScroll = () => {
 onMounted(() => {
   window.addEventListener("scroll", handleScroll);
   document.addEventListener("click", handleDocumentClick);
+
+  const page = window.location.pathname;
+  console.log("Counter");
+  const userAgent = navigator.userAgent;
+
+  fetch(
+    `${GAS_URL}?action=visit` +
+      `&page=${encodeURIComponent(page)}` +
+      `&userAgent=${encodeURIComponent(userAgent)}`,
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("Sukses" + data);
+    })
+    .catch((err) => {
+      console.error("Gagal mencatat:", err);
+    });
 });
 
 const scrollHasil = () => {
