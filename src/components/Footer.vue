@@ -65,10 +65,10 @@ button {
 }
 
 footer {
-  margin-top: 1vh;
+  margin-top: 1px;
   z-index: 500;
   width: 100%;
-  height: 400px;
+  height: 300px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;

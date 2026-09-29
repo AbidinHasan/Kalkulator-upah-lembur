@@ -32,7 +32,7 @@
   box-sizing: border-box;
   z-index: 9999;
   position: fixed;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -181,6 +181,14 @@
       <div class="total">
         <span>Total upah lembur</span><br />
         <strong>Rp34.682 + Rp46.242 + Rp46.242 = Rp 48.557</strong>
+      </div>
+      <br />
+      <p>Note:</p>
+      <div class="highlight">
+        <strong>
+          Klik Kumpulkan untuk menyimpan hasil dan anda bisa menghitung jam
+          lembur selanjutnya untuk mendapat total hasil upah lembur
+        </strong>
       </div>
     </div>
   </div>
